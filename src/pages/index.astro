@@ -1,0 +1,30 @@
+---
+import { useState, useEffect } from 'react';
+import UserInfo from '../components/UserInfo.astro';
+
+const [user, setUser] = useState(null);
+
+useEffect(() => {
+  if (typeof window.Telegram !== 'undefined') {
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+    setUser(tg.initDataUnsafe.user);
+  }
+}, []);
+---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Telegram Mini App</title>
+    <script src="/telegram-sdk.js"></script>
+  </head>
+  <body>
+    <h1>Welcome to My Telegram Mini App</h1>
+    {user ? (
+      <UserInfo user={user} />
+    ) : (
+      <p>Loading...</p>
+    )}
+  </body>
+</html>
