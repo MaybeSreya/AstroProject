@@ -4,6 +4,16 @@ const { user } = Astro.props;
 
 <div>
   <p>Hello, {user.first_name} {user.last_name}!</p>
-  <img src={user.photo_url} alt="User profile" style="border-radius: 50%; width: 100px; height: 100px;" />
+  
+  {user.photo_url ? (
+    <img src={user.photo_url} alt="User profile" style="border-radius: 50%; width: 100px; height: 100px;" />
+  ) : (
+    <p>No profile photo available</p>
+  )}
+
+  <p><strong>Name:</strong> {user.first_name} {user.last_name}</p>
+  <p><strong>Username:</strong> @{user.username}</p>
+  <p><strong>User ID:</strong> {user.id}</p>
+
   <button onClick={() => window.Telegram.WebApp.close()}>Close App</button>
 </div>
