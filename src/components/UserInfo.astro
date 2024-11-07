@@ -1,0 +1,9 @@
+---
+const { user } = Astro.props;
+---
+
+<div>
+  <p>Hello, {user.first_name} {user.last_name}!</p>
+  <img src={user.photo_url} alt="User profile" style="border-radius: 50%; width: 100px; height: 100px;" />
+  <button onClick={() => window.Telegram.WebApp.close()}>Close App</button>
+</div>
